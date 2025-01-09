@@ -1,0 +1,242 @@
+html {
+font-size: 14px;
+}
+body {
+font-family: 'Noto Sans JP', sans-serif;  
+}
+h1 {
+font-size: 1.5rem;
+}
+h2 {
+font-size: 1.475rem;
+}
+h3 {
+font-size: 1.25rem;
+}
+a {
+color: #5196a6;
+text-decoration: none !important;
+}
+
+a:hover {
+  color: #407784;
+}
+
+footer {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  bottom: 0;    
+  background-color: #f2f0eb;
+}
+
+.moattravel-wrapper {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.moattravel-navbar {
+  min-height: 60px;
+}
+
+.moattravel-logo {
+  height: 30px;  
+}
+
+.moattravel-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #5196a6 !important;
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.moattravel-btn:hover {
+  opacity: 0.8;
+}
+
+.moattravel-page-link {
+  color: #5196a6;
+}
+
+.moattravel-page-link:hover {
+  color: #407784;
+}
+
+.moattravel-active {
+  background-color: #5196a6 !important;
+  border-color: #5196a6 !important;
+}
+
+@media screen and (min-width: 1400px) {
+  .moattravel-container {
+    max-width: 1200px;
+  }
+}
+
+/* 入力フィールドの共通スタイル */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* プレースホルダーのスタイル */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #aaa;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* 入力フィールドとボタンの配置 */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* 検索ボタンと登録ボタンの配置 */
+.search-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ページネーションの配置 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.moattravel-active {
+  background-color: #5196a6 !important;
+  border-color: #5196a6 !important;
+}
+
+.moattravel-pre-wrap {
+  white-space: pre-wrap; /* 改行文字で行を折り返す */
+}
+
+.moattravel-link-danger {
+  color: #f2594b;
+  text-decoration: none;
+}
+
+.moattravel-link-danger:hover {
+  color: #a63c3c;
+}
+
+.moattravel-btn-danger {
+  background-color: #f2594b !important; /* 赤色の背景 */
+  color: #fff !important; /* 白い文字 */
+  border-radius: 4px; /* 角丸 */
+  padding: 10px 20px;
+  transition: opacity 0.1s ease;
+  border: none;
+}
+
+.moattravel-btn-danger:hover {
+  opacity: 0.8;
+}
+
+/* モーダル用のスタイル */
+.modal-content {
+  border-radius: 8px;
+}
+
+/* ページネーションのリンク色と現在のページ */
+.pagination .page-link {
+  color: #5196a6; /* 検索ボタンの色 */
+  background-color: transparent;
+  border-color: #5196a6; /* 枠線色 */
+}
+
+.pagination .page-link:hover {
+  color: #407784; /* ホバー時の色 */
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff !important;
+  background-color: #5196a6 !important; /* 現在のページ背景 */
+  border-color: #5196a6 !important; /* 枠線 */
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #ccc; /* 無効状態のページリンク */
+}
+.moattravel-link-danger {
+color: #f2594b;
+}
+.moattravel-link-danger:hover {
+color: #a63c3c;
+}
+.moattravel-btn-danger {
+background-color: #f2594b !important;
+transition: 0.1s;
+}
+.moattravel-btn-danger:hover {
+opacity: 0.8;   
+}
+.moattravel-dropdown-item:active {
+background-color: #5196a6;
+}
+@media screen and (min-width: 1400px) {
+.moattravel-container {
+max-width: 1200px;
+}
+.moattravel-dropdown-item:active {
+background-color: #5196a6;
+}
+.moattravel-card-link {
+transition: 0.3s;
+.moattravel-card-link:hover {
+opacity: 0.7;
+}
+.moattravel-horizontal-card-image {
+width: 100%;
+height: 240px;
+object-fit: cover;
+}
+.moattravel-card-link {
+transition: 0.3s;
+}
+.moattravel-card-link:hover {
+opacity: 0.7;
+}
+.moattravel-horizontal-card-image {
+width: 100%;
+height: 240px;
+object-fit: cover;
+}
+.moattravel-sort-box {
+width: 150px;
+}
+@media screen and (min-width: 1400px) {
+.moattravel-container {
+max-width: 1200px;
+}
+.moattravel-sort-box {
+width: 150px;
+}
+.moattravel-vertical-card-image {
+width: 100%;
+height: 150px;
+object-fit: cover;
+}
+}
+}
+}

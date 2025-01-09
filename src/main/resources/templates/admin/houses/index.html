@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="~{fragment :: meta}"></div>   
+    <div th:replace="~{fragment :: styles}"></div>
+    <title>民宿一覧</title>
+    <style>
+        .alert-info-custom {
+            background-color: #b0e0e6; /* 明るい水色 */
+            color: #5196a6; /* 検索ボタンと同じ文字色 */
+            border-color: #5196a6; /* ボーダー色をボタンと同じ色に */
+        }
+
+        /* ページネーションのリンク色 */
+        .pagination .page-link {
+            color: #5196a6; /* 検索ボタンと同じ色 */
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #5196a6; /* 検索ボタンと同じ背景色 */
+            border-color: #5196a6; /* ボーダーもボタンと同じ色 */
+            color: #fff !important; /* 現在のページ番号を白に */
+        }
+
+        .pagination .page-link:hover {
+            color: #407784; /* 検索ボタンのホバー色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="moattravel-wrapper">
+        <!-- ヘッダー -->
+        <div th:replace="~{fragment :: header}"></div>
+
+        <!-- メインコンテンツ -->
+        <main>
+            <div class="container pt-4 pb-5 moattravel-container">
+                <h1 class="mb-4 text-center">民宿一覧</h1>   
+
+                <!-- 成功メッセージ表示 -->
+                <div th:if="${successMessage}" class="alert alert-info-custom">
+                    <span th:text="${successMessage}"></span>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <form method="get" th:action="@{/admin/houses}" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="民宿名">
+                            <button type="submit" class="btn text-white shadow-sm moattravel-btn">検索</button> 
+                        </div>               
+                    </form>                                 
+                    <a th:href="@{/admin/houses/register}" class="btn text-white shadow-sm mb-3 moattravel-btn">登録</a>                                 
+                </div>     
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">民宿名</th>
+                            <th scope="col">郵便番号</th>
+                            <th scope="col">住所</th>
+                            <th scope="col">電話番号</th>
+                            <th scope="col"></th> 
+                            <th scope="col"></th>                                       
+                        </tr>
+                    </thead>   
+                    <tbody>                                                     
+                        <tr th:each="house : ${housePage}">
+                            <td th:text="${house.getId()}"></td>
+                            <td th:text="${house.getName()}"></td>
+                            <td th:text="${house.getPostalCode()}"></td>
+                            <td th:text="${house.getAddress()}"></td>
+                            <td th:text="${house.getPhoneNumber()}"></td>                                        
+                            <td><a th:href="@{/admin/houses/__${house.getId()}__}">詳細</a></td>   
+                            <td><a href="#" class="moattravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteHouseModal' + house.getId()}">削除</a></td>     
+                            <!-- 削除用モーダル -->
+                            <div class="modal fade" th:id="${'deleteHouseModal' + house.getId()}" tabindex="-1" th:aria-labelledby="${'deleteHouseModalLabel' + house.getId()}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" th:id="${'deleteHouseModalLabel' + house.getId()}" th:text="${house.getName() + 'を削除してもよろしいですか？'}"></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="post" th:action="@{/admin/houses/__${house.getId()}__/delete}">
+                                                <button type="submit" class="btn moattravel-btn-danger text-white shadow-sm">削除</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                                                       
+                        </tr>                                        
+                    </tbody>
+                </table> 
+
+                <!-- ページネーション -->
+                <div th:if="${housePage.getTotalPages() > 1}" class="d-flex justify-content-center">
+                    <nav aria-label="民宿一覧ページ">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a th:href="@{/admin/houses(page=${housePage.getNumber()-1}, keyword=${keyword})}" class="page-link" th:if="${!housePage.isFirst()}">前</a>
+                                <span class="page-link disabled" th:if="${housePage.isFirst()}">前</span>
+                            </li>
+                            <li th:each="i : ${#numbers.sequence(0, housePage.getTotalPages()-1)}" class="page-item">
+                                <a th:href="@{/admin/houses(page=${i}, keyword=${keyword})}" class="page-link" th:unless="${i==housePage.getNumber()}" th:text="${i+1}"></a>
+                                <span class="page-link active" th:if="${i==housePage.getNumber()}" th:text="${i+1}"></span>
+                            </li>
+                            <li class="page-item">
+                                <a th:href="@{/admin/houses(page=${housePage.getNumber()+1}, keyword=${keyword})}" class="page-link" th:if="${!housePage.isLast()}">次</a>
+                                <span class="page-link disabled" th:if="${housePage.isLast()}">次</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div> 
+            </div>
+        </main>
+
+        <!-- フッター -->
+        <div th:replace="~{fragment :: footer}"></div>
+    </div>
+    <div th:replace="~{fragment :: scripts}"></div>         
+</body>
+</html>
